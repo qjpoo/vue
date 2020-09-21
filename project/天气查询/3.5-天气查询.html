@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>天气查询</title>
+    <style>
+      li { margin:7px; padding:5px; float:left; width:150px; height:190px; list-style: none;}
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <div>
+          <img src="../../img/0.jpg" width="150px" height="80" alt="logo" />
+        </div>
+
+        <div>
+          <input
+            v-model="city"
+            @keyup.enter="searchWeather"
+            type="text"
+            placeholder="请输入查询的天气"
+          />
+          <button>搜索</button>
+        </div>
+
+        <div>
+          <a @click="changeCity('北京')" href="javascript:;">北京</a>
+          <a @click="changeCity('上海')" href="javascript:;">上海</a>
+          <a @click="changeCity('广州')" href="javascript:;">广州</a>
+          <a @click="changeCity('深圳')" href="javascript:;">深圳</a>
+          <a @click="changeCity('洪湖')" href="javascript:;">洪湖</a>
+        </div>
+
+        <ul>
+          <li v-for="item in weatherList">
+            <div>{{item.type}}</div>
+            <div>
+              <b>{{item.low}} </b>
+              <b>{{ item.high}}</b>
+            </div>
+            <div>{{item.date}}</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="../../vue.js"></script>
+
+    <!-- 导入js -->
+    <script src="./js/main.js"></script>
+  </body>
+</html>

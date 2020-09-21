@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-on</v-on></title>
+  </head>
+  <body>
+    <div id="app">
+     <!-- <img src="./img/1.jpg" alt="pic!" v-show="true">-->
+      <img src="./img/1.jpg" alt="pic!" v-show="isShow">
+      <img src="./img/1.jpg" alt="pic!" v-show="age>=18">
+
+      <input type="button" value="切换显示的状态" @click="changeIsShow">
+      <input type="button" value="累加年纪" @click="addAge">
+
+    </div>
+    <script src="vue.js" type="text/javascript"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          isShow: false,
+          age: 17
+        },
+        methods: {
+          changeIsShow: function(){
+            this.isShow = !this.isShow
+          },
+          addAge: function(){
+            this.age++,
+            console.log(this.age)
+          }
+        },
+      });
+    </script>
+  </body>
+</html>

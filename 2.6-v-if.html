@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-if</v-on></title>
+  </head>
+  <body>
+    <div id="app">
+      <p v-if="isShow">我是一个p标签 -- v-if </p>
+      <p v-show="isShow">我是一个p标签 -- v-show </p>
+      <p v-if="temp > 38"> so hot !</p>
+      <input type="button" @click="changeIsShow" value="click me">
+
+    </div>
+    <script src="vue.js" type="text/javascript"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          isShow: false,
+          temp: 40
+        },
+        methods: {
+          changeIsShow: function(){
+            this.isShow = !this.isShow
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

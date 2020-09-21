@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notepad</title>
+    <style>
+        .ul {
+            list-style: none;
+            text-align:left;
+        }
+    </style>
+  </head>
+  <body>
+    <!-- 主体区域-->
+    <section id="todoapp">
+      <!--    输入区 -->
+      <header>
+        <h1>小黑记事本</h1>
+        <input @keyup.enter="add" v-model="inputValue" placeholder="请输入" autofocus="autofocus" autocomplete="off" />
+      </header>
+
+      <!-- 列表区域 -->
+      <section>
+        <ul class="ul">
+          <li v-for="(item,index) in list">
+            <span> {{ index + 1 }}. </span>
+            <label> {{ item }} </label>
+            <button @click="remove(index)">X</button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 统计清空 -->
+      <footer>
+        <span v-if="list.length != 0"><strong>{{list.length}}项</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button v-show="list.length !=0 " @click="clear">Clear</button>
+      </footer>
+    </section>
+    <!-- 底部-->
+    <footer><div><p>CopyRight By quinn</p></div></footer>
+    <script src="../vue.js"></script>
+
+    <script>
+      var app = new Vue({
+          el: "#todoapp",
+          data: {
+              list: ["写代码", "看电影"],
+              inputValue: "good good study"
+          },
+          methods: {
+              add: function(){
+                  this.list.push(this.inputValue)
+              },
+              remove: function(index){
+                  //console.log("删除!")
+                  this.list.splice(index,1)
+              },
+              clear: function(){
+                  this.list= []
+              }
+          },
+      })
+    </script>
+  </body>
+</html>

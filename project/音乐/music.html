@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>音乐</title>
+    <style>
+      li {
+        margin: 7px;
+        padding: 5px;
+        list-style: none;
+      }
+      /*
+      .round {
+        border-radius: 25px 25px 25px 25px;
+      }
+      */
+      /* 圆形遮罩 */
+      .ellipse {
+        -webkit-clip-path: ellipse(50% 50%);
+        clip-path: ellipse(50% 50%);
+      }
+
+      .playing {
+        text-align: center;
+        margin-top: 100px;
+      }
+      @-webkit-keyframes rotation {
+        from {
+          -webkit-transform: rotate(0deg);
+        }
+        to {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+      .an {
+        -webkit-transform: rotate(360deg);
+        animation: rotation 10s linear infinite;
+        -moz-animation: rotation 10s linear infinite;
+        -webkit-animation: rotation 10s linear infinite;
+        -o-animation: rotation 10s linear infinite;
+      }
+      .img {
+        border-radius: 250px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <!-- 播放器主体区域 -->
+      <div id="player">
+        <div>
+          <img src="./logo.jpg" width="100px" height="100px" alt="" />
+          <!--   搜索歌曲 -->
+          <input
+            @keyup.enter="searchMusic"
+            type="text"
+            autocomplete="off"
+            v-model="query"
+          />
+        </div>
+
+        <div align="left">
+          <!-- 搜索歌曲列表 -->
+          <div>
+            <ul>
+              <li v-for="item in musicList">
+                <a @click="playMusic(item.id)" href="javascript:;"
+                  ><img
+                    width="25px"
+                    height="25px"
+                    src="./player.jpg"
+                    alt="" /></a
+                >&nbsp;<b>{{ item.name }}</b>&nbsp;&nbsp;
+                <span v-if="item.mvid!=0"
+                  ><img
+                    @click="playMv(item.mvid)"
+                    height="15px"
+                    width="25px"
+                    src="./mv.png"
+                    alt=""
+                /></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 歌曲封面 -->
+        <div class="playing}">
+          <img
+            :class="{an:isPlaying}"
+            :class="{img:isPlaying}"
+            class="ellipse"
+            class="round"
+            width="150px"
+            height="150px"
+            :src="musicCover"
+            alt=""
+          />
+        </div>
+
+        <!-- 歌曲的评论 -->
+        <div>
+          <dl v-for="item in hotComments">
+            <dt>
+              <img
+                class="ellipse"
+                width="60px"
+                height="60px"
+                :src="item.user.avatarUrl"
+                alt=""
+              />
+            </dt>
+            <dd>{{ item.nickname}}</dd>
+            <dd>{{ item.content }}</dd>
+          </dl>
+        </div>
+        <div>
+          <audio
+            @play="play"
+            @pause="pause"
+            ref="audio"
+            :src="musicUrl"
+            controls
+            autoplay
+            loop
+          ></audio>
+        </div>
+        <!-- mv的播放 -->
+        <div>
+          <div v-show="isShow" style="display: none">
+            <video width="400px" height="300px" :src="mvUrl" controls="controls" autoplay></video>
+            <div style="width: '100%'; z-index: -1;" @click="hide">xxxxxx</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="../../vue.js"></script>
+
+    <script src="./js/main.js"></script>
+  </body>
+</html>

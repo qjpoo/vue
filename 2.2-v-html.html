@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-html</title>
+  </head>
+  <body>
+    <div id="app">
+      <p v-html="message"></p>
+      <p v-text="message"></p>
+      <p v-html="message1"></p> <!-- 可以解析html结构 -->
+      <p v-text="message1"></p> <!-- 只是文本 -->
+    </div>
+    <script src="vue.js" type="text/javascript"></script>
+    <script>
+      var  app = new Vue({
+          el: "#app",
+          data: {
+              message: "vue.js",
+              message1: "<a href='baidu.com'>javascript</a>",
+          }
+      })
+    </script>
+  </body>
+</html>

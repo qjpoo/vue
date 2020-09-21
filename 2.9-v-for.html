@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-for</v-on></title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="item in arr">hello, {{ item }}</li>
+      </ul>
+
+      <ul>
+        <li v-for="(item, index) in arr">hello, {{ index + 1 }} {{ item }}</li>
+      </ul>
+
+      <h2 v-for="(item, index) in obj" :title="item">{{ index }} {{ item }}</h2>
+      
+      <input type="button" value="增加" @click="add" />
+      <br />
+      <input type="button" value="移除" @click="remove" />
+    </div>
+
+    <script src="vue.js" type="text/javascript"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          arr: ["Beijing", "Shenzheng", "Wuhan"],
+          obj: [{
+            name: "chiling",
+            age: 48,
+            addr: "Hongkong",
+          }],
+        },
+        methods: {
+          add: function() {
+            this.obj.push({ name: "quinn", age: 35, addr: "Shengzhe" });
+            this.obj.push({name: "zhangs", age: 25, addr:"Wuhan"})
+          },
+          remove: function () {
+            this.obj.shift();
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

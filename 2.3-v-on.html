@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-on</v-on></title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="button" v-on:click="doIt" v-model="message"/><br><br>
+      <input type="button" @click="doIt" v-model="message1"/>
+      <input type="button" @dblclick="doIt" v-model="message2"/>
+      <h2 @click="changeFood">{{ food }}</h2>
+    </div>
+    <script src="vue.js" type="text/javascript"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+            message: "点击!",
+            message1: "点!",
+            message2: "双击!",
+            food: "牛肉"
+        },
+        methods: {
+          doIt: function () {
+            alert("do It");
+          },
+          changeFood: function(){
+            //console.log(this.food) // 可以通过this.food拿到food这个变量的值 
+            this.food += "好好吃!"
+          }
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hello</title>
+  </head>
+  <body>
+    <div id="app">
+      {{ message }}
+      <h2> {{ school.name }} {{ school.tel}}</h2>
+      <ul>
+        <li>
+          {{ info[0] }} {{ info[2] }}
+        </li>
+        <li>
+          {{ info[1]}}
+        </li>
+      </ul>
+    </div>
+    <script src="vue.js" type="text/javascript"></script>
+    <script>
+      var  app = new Vue({
+          el: "#app",
+          data: {
+            message: "hi",
+            school: {
+              name: "vuer",
+              tel: "123456"
+            },
+            info: ["men", "28", "Beijing"]
+          }
+      })
+    </script>
+  </body>
+</html>
